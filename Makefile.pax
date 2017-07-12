@@ -1,0 +1,11 @@
+#  Building the Emu framework.
+#  Nik Sultana, Cambridge University Computer Lab, July 2016
+#
+#  This software was developed by the University of Cambridge,
+#  Computer Laboratory under EPSRC NaaS Project EP/K034723/1 
+#
+#  Use of this source code is governed by the Apache 2.0 license; see LICENSE file
+
+Pax_DLL = $(PAX)/Bin/Pax_Lite.dll
+Hub_DLL = $(PAX)/Examples/Bin/Hub.dll
+Pax_LIB = $(Pax_DLL) $(Hub_DLL)

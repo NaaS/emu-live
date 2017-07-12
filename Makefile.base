@@ -1,0 +1,55 @@
+#  Building the Emu framework.
+#  Nik Sultana, Cambridge University Computer Lab, July 2016
+#
+#  This software was developed by the University of Cambridge,
+#  Computer Laboratory under EPSRC NaaS Project EP/K034723/1 
+#
+#  Use of this source code is governed by the Apache 2.0 license; see LICENSE file
+
+KIWI ?= $(HPRLS)/kiwipro/kiwic/distro
+KIWIDLL = $(KIWI)/support/Kiwi.dll
+
+MONO ?= mono
+KIWIC ?= $(MONO) $(KIWI)/lib/kiwic.exe
+CSC ?= gmcs
+KIWI_VERSION?=Current
+CSC_FLAGS+=-optimize+ -define:Kiwi_$(KIWI_VERSION)
+
+OUTPUT_DIR=out
+
+EMU_SRC=Emu.cs
+EMU_TGT=$(OUTPUT_DIR)/Emu.dll
+RXTX_SRC=Transceiver.cs
+RXTX_TGT=$(OUTPUT_DIR)/Transceiver.dll
+NF_SRC=NetFPGA.cs
+NF_TGT=$(OUTPUT_DIR)/NetFPGA.dll
+P_SRC=Protocols.cs
+P_TGT=$(OUTPUT_DIR)/Protocols.dll
+Memory_SRC=Memory.cs
+Memory_TGT=$(OUTPUT_DIR)/Memory.dll
+CAM_SRC=CAM.cs
+CAM_TGT=$(OUTPUT_DIR)/CAM.dll
+Memcached_SRC=Memcached.cs
+Memcached_TGT=$(OUTPUT_DIR)/Memcached.dll
+
+EMU_SOURCES=$(EMU_SRC) $(RXTX_SRC) $(NF_SRC) $(P_SRC) $(CAM_SRC) $(Memory_SRC) $(Memcached_SRC)
+EMU_TARGETS=$(patsubst %, $(OUTPUT_DIR)/%, $(EMU_SOURCES:.cs=.dll))
+APP_SOURCES=TCP_Ping.cs Reference_Switch_Lite.cs Memcached_ICMP.cs # Memcached_ICMP_Refactored.cs Reference_Switch_Liter.cs
+APP_TARGETS=$(patsubst %, $(OUTPUT_DIR)/%, $(APP_SOURCES:.cs=.v))
+APP_MID_TARGETS=$(patsubst %, $(OUTPUT_DIR)/%, $(APP_SOURCES:.cs=.dll))
+
+.PHONY: emu all clean clean_dll clean_all
+
+emu: $(EMU_TARGETS)
+
+all: $(APP_TARGETS)
+
+dll: $(EMU_TARGETS) $(APP_MID_TARGETS)
+
+clean:
+	rm -f $(APP_TARGETS)
+
+clean_dll:
+	rm -f $(EMU_TARGETS) $(APP_MID_TARGETS)
+
+clean_all: clean clean_dll

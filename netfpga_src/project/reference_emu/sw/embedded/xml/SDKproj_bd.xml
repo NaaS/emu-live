@@ -1,0 +1,34 @@
+<!--
+# Copyright (c) 2015 Digilent Inc.
+# Copyright (c) 2015 Tinghui Wang (Steve)
+# Copyright (c) 2015 University of Cambridge
+# All rights reserved.
+#
+#  File:
+#        SDKproj_bd.xml
+#
+#  Project:
+#        reference project
+#
+#  Author:
+#        Tinghui Wang (Steve)
+#
+#  Description:
+#        compiles a project 
+#
+# This software was developed by Stanford University and the University of Cambridge Computer Laboratory 
+# under National Science Foundation under Grant No. CNS-0855268,
+# the University of Cambridge Computer Laboratory under EPSRC INTERNET Project EP/H040536/1 and
+# by the University of Cambridge Computer Laboratory under DARPA/AFRL contract FA8750-11-C-0249 ("MRC2"), 
+# as part of the DARPA MRC research programme.
+#
+# Use of this source code is governed by the Apache 2.0 license; see LICENSE file
+#
+-->
+
+<project name="SDK Script" default="main">
+  <target name="main">
+    <createHwProject projname="hw_platform_0" hwspecpath="hw/reference_emu.xml" />
+    <createAppProject projname="reference_emu" hwprojname="hw_platform_0" processor="mbsys_microblaze_0" bspprojname="bsp" os="standalone" template="Hello World" language="C" />
+  </target>
+</project>

@@ -1,0 +1,17 @@
+obj/
+
+out/CAM.dll
+out/Emu.dll
+out/Frame_Functor.dll
+out/Frame_Processor.dll
+out/Memcached.dll
+out/Memory.dll
+out/NetFPGA.dll
+out/Protocols.dll
+out/Reference_Switch_Lite.dll
+out/Transceiver.dll
+
+Nat/**/bin/
+Nat/**/obj/
+Nat/**/packages/
+Nat/.vs/

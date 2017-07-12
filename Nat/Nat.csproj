@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EE72A6B5-FE38-4B63-98AC-8C98CE1E2DAB}</ProjectGuid>
+    <OutputType Condition=" '$(Configuration)' != 'Debug' ">Library</OutputType>
+    <OutputType Condition=" '$(Configuration)' == 'Debug' ">Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Emu.Nat</RootNamespace>
+    <AssemblyName>Nat</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <!-- Debug is for running automated tests -->
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <!-- Release is for running through Pax -->
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <!-- Enable debug stuff to get stack traces in mono -->
+    <!--<DebugSymbols>True</DebugSymbols>
+    <DebugType>Full</DebugType>-->
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;MININET</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <!-- Kiwi is for compiling to Verilog  -->
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Kiwi|AnyCPU'">
+    <OutputPath>bin\Kiwi\</OutputPath>
+    <DefineConstants>KIWI</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>None</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CAM">
+      <HintPath>..\out\CAM.dll</HintPath>
+    </Reference>
+    <Reference Include="Emu">
+      <HintPath>..\out\Emu.dll</HintPath>
+    </Reference>
+    <Reference Include="Frame_Functor">
+      <HintPath>..\out\Frame_Functor.dll</HintPath>
+    </Reference>
+    <Reference Include="Frame_Processor">
+      <HintPath>..\out\Frame_Processor.dll</HintPath>
+    </Reference>
+    <Reference Include="Kiwi">
+      <HintPath>$(HPRLS)\kiwipro\kiwic\distro\support\Kiwi.dll</HintPath>
+    </Reference>
+    <Reference Include="Memcached">
+      <HintPath>..\out\Memcached.dll</HintPath>
+    </Reference>
+    <Reference Include="Memory">
+      <HintPath>..\out\Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="NetFPGA">
+      <HintPath>..\out\NetFPGA.dll</HintPath>
+    </Reference>
+    <Reference Include="PacketDotNet">
+      <HintPath>$(PAX)\Bin\PacketDotNet.dll</HintPath>
+    </Reference>
+    <Reference Include="Pax">
+      <HintPath>$(PAX)\Bin\Pax.exe</HintPath>
+    </Reference>
+    <Reference Include="Protocols">
+      <HintPath>..\out\Protocols.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpPcap">
+      <HintPath>$(PAX)\Bin\SharpPcap.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Transceiver" Condition=" '$(Configuration)' == 'Kiwi' ">
+      <HintPath>..\out\Transceiver.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ARPWrapper.cs" />
+    <Compile Include="Bootstrap.cs" />
+    <Compile Include="ConnectionEntry.cs" />
+    <Compile Include="EthernetWrapper.cs" />
+    <Compile Include="TCPWrapper.cs" />
+    <Compile Include="IPv4Wrapper.cs" />
+    <Compile Include="NAT.cs" />
+    <Compile Include="PaxWrapper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="EmuUtil\EmuUtil.csproj">
+      <Project>{a75fc78f-2caf-4a05-ab21-4e84047b384e}</Project>
+      <Name>EmuUtil</Name>
+    </ProjectReference>
+    <ProjectReference Include="Mocks\Mocks.csproj" Condition=" '$(Configuration)' != 'Kiwi' ">
+      <Project>{c4f4638d-0cec-4131-8eab-8ed166bcc584}</Project>
+      <Name>Mocks</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

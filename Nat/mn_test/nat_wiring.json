@@ -1,0 +1,36 @@
+{
+  "handlers": [
+    {
+      "class_name": "PaxNatPacketProcessor",
+      "args": {
+        "nat_inside_address":  "192.168.1.1",
+        "nat_outside_address": "10.0.0.3",
+
+        "#tcp_inactivity_timeout": "00:05:00",
+        "#tcp_time_wait_duration": "00:04:00",
+        "tcp_start_port": "1025",
+        "#tcp_end_port": "65535",
+        "#udp_inactivity_timeout": "00:00:30",
+        "#udp_start_port": "1025",
+        "#udp_end_port": "65535"
+      }
+    }
+  ],
+  "interfaces": [
+    {
+      "interface_name": "nat0-eth0",
+      "lead_handler": "PaxNatPacketProcessor",
+      "pcap_filter": "tcp or udp or arp"
+    },
+    {
+      "interface_name": "nat0-eth1",
+      "lead_handler": "PaxNatPacketProcessor",
+      "pcap_filter": "tcp or udp or arp"
+    },
+    {
+      "interface_name": "nat0-eth2",
+      "lead_handler": "PaxNatPacketProcessor",
+      "pcap_filter": "tcp or udp or arp"
+    }
+  ]
+}

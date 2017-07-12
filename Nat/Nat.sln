@@ -1,0 +1,60 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nat", "Nat.csproj", "{EE72A6B5-FE38-4B63-98AC-8C98CE1E2DAB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mocks", "Mocks\Mocks.csproj", "{C4F4638D-0CEC-4131-8EAB-8ED166BCC584}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "mn_test", "mn_test", "{D3C96298-76AF-4C97-A185-309D147E8361}"
+	ProjectSection(SolutionItems) = preProject
+		mn_test\nat_topo.py = mn_test\nat_topo.py
+		mn_test\nat_wiring.json = mn_test\nat_wiring.json
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmuUtil", "EmuUtil\EmuUtil.csproj", "{A75FC78F-2CAF-4A05-AB21-4E84047B384E}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "EmuUtilTests", "EmuUtilTests\EmuUtilTests.fsproj", "{C181DD03-1992-4D55-A60A-76F909852148}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D74E23B5-6690-4671-9568-541B6EE423D7}"
+	ProjectSection(SolutionItems) = preProject
+		PostKiwiTransform.fsx = PostKiwiTransform.fsx
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Kiwi|Any CPU = Kiwi|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EE72A6B5-FE38-4B63-98AC-8C98CE1E2DAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE72A6B5-FE38-4B63-98AC-8C98CE1E2DAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE72A6B5-FE38-4B63-98AC-8C98CE1E2DAB}.Kiwi|Any CPU.ActiveCfg = Kiwi|Any CPU
+		{EE72A6B5-FE38-4B63-98AC-8C98CE1E2DAB}.Kiwi|Any CPU.Build.0 = Kiwi|Any CPU
+		{EE72A6B5-FE38-4B63-98AC-8C98CE1E2DAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE72A6B5-FE38-4B63-98AC-8C98CE1E2DAB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4F4638D-0CEC-4131-8EAB-8ED166BCC584}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4F4638D-0CEC-4131-8EAB-8ED166BCC584}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4F4638D-0CEC-4131-8EAB-8ED166BCC584}.Kiwi|Any CPU.ActiveCfg = Release|Any CPU
+		{C4F4638D-0CEC-4131-8EAB-8ED166BCC584}.Kiwi|Any CPU.Build.0 = Release|Any CPU
+		{C4F4638D-0CEC-4131-8EAB-8ED166BCC584}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4F4638D-0CEC-4131-8EAB-8ED166BCC584}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A75FC78F-2CAF-4A05-AB21-4E84047B384E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A75FC78F-2CAF-4A05-AB21-4E84047B384E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A75FC78F-2CAF-4A05-AB21-4E84047B384E}.Kiwi|Any CPU.ActiveCfg = Kiwi|Any CPU
+		{A75FC78F-2CAF-4A05-AB21-4E84047B384E}.Kiwi|Any CPU.Build.0 = Kiwi|Any CPU
+		{A75FC78F-2CAF-4A05-AB21-4E84047B384E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A75FC78F-2CAF-4A05-AB21-4E84047B384E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C181DD03-1992-4D55-A60A-76F909852148}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C181DD03-1992-4D55-A60A-76F909852148}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C181DD03-1992-4D55-A60A-76F909852148}.Kiwi|Any CPU.ActiveCfg = Release|Any CPU
+		{C181DD03-1992-4D55-A60A-76F909852148}.Kiwi|Any CPU.Build.0 = Release|Any CPU
+		{C181DD03-1992-4D55-A60A-76F909852148}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C181DD03-1992-4D55-A60A-76F909852148}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

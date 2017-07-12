@@ -1,0 +1,24 @@
+#  Building the Emu framework.
+#  Nik Sultana, Cambridge University Computer Lab, July 2016
+#
+# This software was developed by the University of Cambridge,
+# Computer Laboratory under EPSRC NaaS Project EP/K034723/1 
+#
+# Use of this source code is governed by the Apache 2.0 license; see LICENSE file
+
+include Makefile.base
+
+$(Memory_TGT): $(Memory_SRC)
+	$(CSC) $(CSC_FLAGS) /target:library /r:$(KIWIDLL) -o $@ $<
+$(CAM_TGT): $(CAM_SRC) $(Memory_TGT) $(RXTX_TGT)
+	$(CSC) $(CSC_FLAGS) /target:library /r:$(KIWIDLL) /r:$(Memory_TGT) /r:$(RXTX_TGT) -o $@ $<
+$(EMU_TGT): $(EMU_SRC)
+	$(CSC) $(CSC_FLAGS) /target:library /r:$(KIWIDLL) -o $@ $<
+$(NF_TGT): $(NF_SRC) $(EMU_TGT)
+	$(CSC) $(CSC_FLAGS) /target:library /r:$(KIWIDLL) -o $@ $<
+$(P_TGT): $(P_SRC) $(EMU_TGT)
+	$(CSC) $(CSC_FLAGS) /target:library /r:$(KIWIDLL) /r:$(EMU_TGT) -o $@ $<
+$(Memcached_TGT): $(Memcached_SRC) $(P_TGT) $(Memory_TGT)
+	$(CSC) $(CSC_FLAGS) /target:library /r:$(KIWIDLL) /r:$(P_TGT) /r:$(Memory_TGT) -o $@ $<
+$(RXTX_TGT): $(RXTX_SRC) $(NF_TGT)
+	$(CSC) $(CSC_FLAGS) /target:library /r:$(KIWIDLL) /r:$(NF_TGT) -o $@ $<
